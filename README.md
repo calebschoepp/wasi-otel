@@ -1,11 +1,3 @@
-# [Example WASI proposal]
-
-This template can be used to start a new proposal, which can then be proposed in the WASI Subgroup meetings.
-
-The sections below are recommended. However, every proposal is different, and the community can help you flesh out the proposal, so don't block on having something filled in for each one of them.
-
-Thank you to the W3C Privacy CG for the [inspiration](https://github.com/privacycg/template)!
-
 # WASI OTel
 
 A proposed [WebAssembly System Interface](https://github.com/WebAssembly/WASI) API.
@@ -40,19 +32,20 @@ TODO before entering Phase 2.
 
 ### Introduction
 
-WASI Otel exposes an [OpenTelemetry](https://opentelemetry.io/) interface to Wasm components to allow them to collect traces, metrics, and logs [signals](https://opentelemetry.io/docs/concepts/signals/). The primary motivation of the interface is to enable Wasm components to use standard [OTel SDKs](https://opentelemetry.io/docs/languages/). A secondary goal is to enable Wasm components to directly consume this interface. WASI OTel seeks to closely mirror the upstream OTel APIs.
+WASI Otel exposes an [OpenTelemetry](https://opentelemetry.io/) interface to Wasm components to allow them to collect trace, metric, and log [signals](https://opentelemetry.io/docs/concepts/signals/).
 
 #### An aside about the origin of the proposal
 
-This work was originally being pursued under the banner of [WASI Observe](https://github.com/WebAssembly/wasi-observe). Throughout that process the contributors felt that it was best to pursue creating an interface that was tightly bound to the upstream OpenTelemetry APIs. Both because that is what most developers actually required and because it was more easily achievable than creating a generic interface. Hence WASI OTel was created to make a space for this work leaving WASI Observe as a space for more generic observability interface in the future.
+This work was originally being pursued under the banner of [WASI Observe](https://github.com/WebAssembly/wasi-observe). Throughout that process the contributors felt that it was best to pursue creating an interface that was tightly bound to the upstream OpenTelemetry APIs. Both because that is what most developers actually required and because it was more easily achievable than creating a generic interface in the near term. Hence WASI OTel was created to make a space for this work leaving WASI Observe as a space for more generic observability interface in the future.
 
 ### Goals
 
-[What is the end-user need which this project aims to address?]
+- Enable Wasm components to use standard [OTel SDKs](https://opentelemetry.io/docs/languages/)
+- Closely mirror the upstream OTel APIs.
 
 ### Non-goals
 
-[If there are "adjacent" goals which may appear to be in scope but aren't, enumerate them here. This section may be fleshed out as your design progresses and you encounter necessary technical and other trade-offs.]
+- Provide an interface that is easily consumed directly by components.
 
 ### API walk-through
 
@@ -88,15 +81,13 @@ The full API documentation can be found [here](wasi-proposal-template.md).
 
 ### Considered alternatives
 
-[This section is not required if you already covered considered alternatives in the design discussion above.]
-
 #### Enabling observability through WASI Observe
 
-TODO
+In the future if a need for a more generic observability interface is identified, WASI Observe would be a reasonable home for it. However, for an interface that is tightly bound to the upstream OpenTelemetry APIs, WASI OTel is a better fit.
 
 #### Enabling observability through canon builtins
 
-TODO
+It would be possible to expose observability through canon builtins. This would potentially provide for a better DX and improved performance. However, the speed of iteration would be greatly reduced and something so core to WASI should not be tied to another project like OpenTelemetry. Therefore, this is left as a potential future opportunity.
 
 ### Stakeholder Interest & Feedback
 
